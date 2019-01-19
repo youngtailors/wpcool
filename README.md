@@ -4,4 +4,4 @@
 
 ## License
 
-MIT &copy; dacsang97
+MIT &copy; Young Tailors

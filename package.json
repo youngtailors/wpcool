@@ -7,10 +7,10 @@
     "dev": "nodemon --exec ts-node src/index.ts"
   },
   "repository": {
-    "url": "dacsang97/wpcool",
+    "url": "youngtailors/wpcool",
     "type": "git"
   },
-  "author": "dacsang97<dacsang97@gmail.com>",
+  "author": "Young Tailors <team@procolla.com>",
   "license": "MIT",
   "devDependencies": {
     "@types/axios": "^0.14.0",
