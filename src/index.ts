@@ -1,6 +1,8 @@
 import 'reflect-metadata'
-import { startServer } from './startServer'
+import { startServer, app } from './startServer'
 
 startServer().catch(error => {
   console.error(error)
 })
+
+export default app

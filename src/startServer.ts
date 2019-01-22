@@ -4,9 +4,9 @@ import * as Express from 'express'
 import { buildSchema } from 'type-graphql'
 import { IWPCoolContext } from './types/Context'
 
-export const startServer = async () => {
-  const app = Express()
+export const app = Express()
 
+export const startServer = async () => {
   const server = new ApolloServer({
     schema: await buildSchema({
       resolvers: [path.join(__dirname, '/modules/**/resolver.*')],
