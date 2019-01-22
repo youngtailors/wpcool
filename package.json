@@ -5,8 +5,7 @@
   "scripts": {
     "lint": "eslint . --ext .js,.ts,.tsx --ignore-path .gitignore",
     "dev": "nodemon --exec ts-node src/index.ts",
-    "build": "tsc",
-    "now-build": "yarn build"
+    "build": "tsc"
   },
   "repository": {
     "url": "youngtailors/wpcool",
