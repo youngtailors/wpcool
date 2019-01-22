@@ -1,5 +1,4 @@
 import 'reflect-metadata'
-import * as path from 'path'
 import { ApolloServer } from 'apollo-server-express'
 import * as Express from 'express'
 import { buildSchemaSync } from 'type-graphql'
@@ -7,7 +6,7 @@ import { IWPCoolContext } from './types/Context'
 
 const server = new ApolloServer({
   schema: buildSchemaSync({
-    resolvers: [path.join(__dirname, '/modules/**/resolver.*')],
+    resolvers: [require('./modules/post/resolver')],
   }),
   context: ({ req }: any): IWPCoolContext => ({
     req,
