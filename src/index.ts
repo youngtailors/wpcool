@@ -5,7 +5,6 @@ import * as Express from 'express'
 import { buildSchemaSync } from 'type-graphql'
 import { IWPCoolContext } from './types/Context'
 
-const app = Express()
 const server = new ApolloServer({
   schema: buildSchemaSync({
     resolvers: [path.join(__dirname, '/modules/**/resolver.*')],
@@ -14,6 +13,8 @@ const server = new ApolloServer({
     req,
   }),
 })
+
+const app = Express()
 
 server.applyMiddleware({ app })
 
