@@ -51,6 +51,7 @@
     "axios": "^0.18.0",
     "class-validator": "^0.9.1",
     "express": "^4.16.4",
+    "humps": "^2.0.1",
     "reflect-metadata": "^0.1.13",
     "type-graphql": "^0.16.0"
   }
