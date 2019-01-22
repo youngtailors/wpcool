@@ -5,4 +5,4 @@ startServer().catch(error => {
   console.error(error)
 })
 
-export default app
+module.exports = app
