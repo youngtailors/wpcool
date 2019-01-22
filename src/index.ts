@@ -1,8 +1,28 @@
 import 'reflect-metadata'
-import { startServer } from './startServer'
+import * as path from 'path'
+import { ApolloServer } from 'apollo-server-express'
+import * as Express from 'express'
+import { buildSchemaSync } from 'type-graphql'
+import { IWPCoolContext } from './types/Context'
 
-startServer().catch(error => {
-  console.error(error)
+const app = Express()
+const server = new ApolloServer({
+  schema: buildSchemaSync({
+    resolvers: [path.join(__dirname, '/modules/**/resolver.*')],
+  }),
+  context: ({ req }: any): IWPCoolContext => ({
+    req,
+  }),
 })
 
-export default startServer
+server.applyMiddleware({ app })
+
+const port = parseInt(process.env.PORT as string, 10) || 4000
+
+app.listen({ port }, () =>
+  console.log(
+    `🚀 Server ready at http://localhost:${port}${server.graphqlPath}`,
+  ),
+)
+
+export default app
