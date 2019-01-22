@@ -18,11 +18,11 @@ export const startServer = async () => {
 
   server.applyMiddleware({ app })
 
-  const port = process.env.PORT || 4000
+  const port = parseInt(process.env.PORT as string, 10) || 4000
 
   app.listen({ port }, () =>
     console.log(
-      `🚀 Server ready at http://localhost:4000${server.graphqlPath}`,
+      `🚀 Server ready at http://localhost:${port}${server.graphqlPath}`,
     ),
   )
 }
