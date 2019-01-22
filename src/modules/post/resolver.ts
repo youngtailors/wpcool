@@ -2,6 +2,7 @@ import { Resolver, Query, Args } from 'type-graphql'
 import axios from 'axios'
 import { Post } from '../../entities/Post'
 import { PostByIDArgs } from './types'
+import { camelizeKeys } from 'humps'
 
 @Resolver(Post)
 export class PostResolver {
@@ -25,7 +26,7 @@ export class PostResolver {
     try {
       const result = await axios.get(url)
       const post = result.data
-      return post
+      return camelizeKeys(post)
     } catch (error) {
       throw error
     }
