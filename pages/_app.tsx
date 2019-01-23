@@ -18,7 +18,7 @@ export default class MyApp extends App {
     return (
       <Container>
         <Head>
-          <title>react-native-web</title>
+          <title>WPCool - Wordpress Enhancer</title>
         </Head>
         <Component {...pageProps} />
       </Container>
