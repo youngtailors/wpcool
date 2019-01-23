@@ -13,5 +13,8 @@ jobs:
           name: Linting
           command: yarn lint
       - run:
-          name: Build
-          command: yarn build
+          name: Build website
+          command: yarn build:web
+      - run:
+          name: Build server
+          command: yarn build:server
