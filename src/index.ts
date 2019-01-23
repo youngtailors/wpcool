@@ -13,10 +13,9 @@ const handle = next.getRequestHandler()
 
 next.prepare().then(async () => {
   const app = Express()
-
   const server = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [path.join(__dirname, '/modules/**/resolver.*')],
+      resolvers: [path.join(__dirname, '/modules/**/resolver.?s')],
     }),
     context: ({ req }: any): IWPCoolContext => ({
       req,
