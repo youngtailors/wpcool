@@ -1,4 +1,5 @@
 {
   "name": "wpcool",
-  "alias": "wpcool"
+  "alias": "wpcool",
+  "type": "docker"
 }
