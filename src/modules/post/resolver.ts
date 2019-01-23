@@ -7,20 +7,26 @@ import { camelizeKeys } from 'humps'
 @Resolver(Post)
 export class PostResolver {
   @Query(() => Post, { nullable: true })
-  async post(@Args() { ID, siteID, siteURL }: PostByIDArgs) {
-    if (!siteID && !siteURL) {
-      throw new Error('Must provide siteID or siteURL')
+  async post(@Args() { ID, slug, site }: PostByIDArgs) {
+    if (!ID && !slug) {
+      throw new Error('Must provide ID or slug')
     }
-    if (siteID && siteURL) {
-      throw new Error('Must provide only siteID or siteURL')
+    if (ID && slug) {
+      throw new Error('Must provide only ID or slug')
     }
-    const site = siteID || siteURL.replace(/(http|https):\/\//, '')
+    if (isNaN(Number(site))) {
+      site = site.replace(/(http|https):\/\//, '')
+      if (site[site.length - 1] === '/') {
+        site = site.slice(0, -1)
+      }
+    }
+    const url = `https://public-api.wordpress.com/rest/v1.1/sites/${site}/posts/${
+      ID ? ID : 'slug:' + slug
+    }`
     try {
-      const result = await axios.get(
-        `https://public-api.wordpress.com/rest/v1.1/sites/${site}/posts/${ID}`,
-      )
-      const post = camelizeKeys(result.data)
-      return post
+      const result = await axios.get(url)
+      const post = result.data
+      return camelizeKeys(post)
     } catch (error) {
       throw error
     }
@@ -29,29 +35,45 @@ export class PostResolver {
   @Query(() => [Post], { nullable: true })
   async posts(@Args()
   {
-    siteID,
-    siteURL,
+    site,
     number,
+    offset,
+    page,
+    pageHandle,
     order,
     orderBy,
+    tag,
+    type,
     category,
+    parentId,
     author,
     search,
   }: PostByIDArgs) {
-    if (!siteID && !siteURL) {
-      throw new Error('Must provide siteID or siteURL')
+    if (isNaN(Number(site))) {
+      site = site.replace(/(http|https):\/\//, '')
+      if (site[site.length - 1] === '/') {
+        site = site.slice(0, -1)
+      }
     }
-    if (siteID && siteURL) {
-      throw new Error('Must provide only siteID or siteURL')
+    const args = {
+      site,
+      number,
+      offset,
+      page,
+      pageHandle,
+      order,
+      orderBy,
+      tag,
+      type,
+      category,
+      parentId,
+      author,
+      search,
     }
-    const site = siteID || siteURL.replace(/(http|https):\/\//, '')
-    // const args = {number, order, orderBy, category, author, search}
-    // let params = ''
-    // Object.keys(args).forEach(key => {
-    //   if (args[key]) {
-    //     params += '?' + decamelizeKeys(key) + '=' + args[key]
-    //   }
-    // })
+    // const xParams = {}
+    Object.keys(args).forEach(key => {
+      console.log(key)
+    })
     try {
       const result = await axios.get(
         `https://public-api.wordpress.com/rest/v1.1/sites/${site}/posts`,
