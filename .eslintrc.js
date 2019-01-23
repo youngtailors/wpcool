@@ -13,5 +13,6 @@ module.exports = {
     'no-shadow': 'off',
     'no-empty': 'off',
     'one-var': 'off',
+    'typescript/no-var-requires': 'off',
   },
 }

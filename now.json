@@ -6,12 +6,18 @@
     {
       "src": "src/index.ts",
       "use": "@now/node@canary"
+    },
+    {
+      "src": "website/next.config.js",
+      "use": "@now/next"
     }
   ],
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/graphql",
       "dest": "src/index.ts"
-    }
+    },
+    { "src": "/static/(.*)", "dest": "/static/$1" },
+    { "src": "/(.*)", "dest": "/$1" }
   ]
 }
