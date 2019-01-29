@@ -15,14 +15,11 @@ export class Post {
   @Field(() => Int)
   ID: number
 
+  @Field(() => Int)
+  siteID: number
+
   @Field(() => Author)
   author: Author
-
-  @Field(() => String)
-  title: string
-
-  @Field(() => String)
-  content: string
 
   @Field(() => String)
   date: string
@@ -31,10 +28,16 @@ export class Post {
   modified: string
 
   @Field(() => String)
+  title: string
+
+  @Field(() => String)
   URL: string
 
   @Field(() => String)
   shortURL: string
+
+  @Field(() => String)
+  content: string
 
   @Field(() => String)
   excerpt: string
@@ -120,8 +123,8 @@ export class Post {
   @Field(() => Int)
   attachmentCount: number
 
-  @Field(() => Boolean)
-  metadata: boolean
+  @Field(() => Int, { nullable: true })
+  metadata?: number = 1
 
   @Field(() => Meta)
   meta: Meta

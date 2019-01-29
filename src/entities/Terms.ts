@@ -4,7 +4,7 @@ import { PostTag } from './PostTag'
 
 @ObjectType()
 export class Terms {
-  @Field(() => PostTag)
+  @Field(() => PostTag, { nullable: true })
   postTag: PostTag
 
   @Field(() => JSON)

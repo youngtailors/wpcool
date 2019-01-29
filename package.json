@@ -4,7 +4,8 @@
   "description": "Wordpress API Enhancer",
   "scripts": {
     "lint": "eslint . --ext .js,.ts,.tsx --ignore-path .gitignore",
-    "dev": "nodemon --exec ts-node src/index.ts"
+    "dev": "nodemon --exec ts-node src/index.ts",
+    "build": "tsc"
   },
   "repository": {
     "url": "youngtailors/wpcool",
@@ -51,6 +52,7 @@
     "class-validator": "^0.9.1",
     "express": "^4.16.4",
     "graphql-type-json": "^0.2.1",
+    "humps": "^2.0.1",
     "reflect-metadata": "^0.1.13",
     "type-graphql": "^0.16.0"
   }
