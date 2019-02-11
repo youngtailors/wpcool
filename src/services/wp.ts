@@ -21,4 +21,5 @@ const api = axios.create({
   ],
 })
 
-export const getPostById = (site, ID) => api.get(`/${site}/posts/${ID}`)
+export const getPostById = (site, ID, slug) =>
+  api.get(`/${site}/posts/${ID ? ID : 'slug:' + slug}`)

@@ -21,7 +21,7 @@ export class Author {
   lastName: string
 
   @Field(() => String)
-  nicName: string
+  niceName: string
 
   @Field(() => String)
   URL: string
