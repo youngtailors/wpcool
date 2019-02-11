@@ -16,7 +16,7 @@ export class PostResolver {
     const site = siteID || siteURL.replace(/(http|https):\/\//, '')
     try {
       const result = await getPostById(site, ID)
-      return JSON.parse(result.data)
+      return result.data
     } catch (error) {
       throw error
     }
