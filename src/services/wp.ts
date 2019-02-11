@@ -16,7 +16,6 @@ const api = axios.create({
           }
         }
       })
-      console.log({ newData })
       return newData
     },
   ],
