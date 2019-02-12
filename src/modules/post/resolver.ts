@@ -1,36 +1,27 @@
 import { Resolver, Query, Args } from 'type-graphql'
-import axios from 'axios'
 import { Post } from '../../entities/Post'
 import { PostByIDArgs } from './types'
-import { camelize } from '../../utils/camel'
+import { getPostById } from '../../services/wp'
 
 @Resolver(Post)
 export class PostResolver {
   @Query(() => Post, { nullable: true })
-  async post(@Args() { ID, siteID, siteURL }: PostByIDArgs) {
-    if (!siteID && !siteURL) {
-      throw new Error('Must provide siteID or siteURL')
+  async post(@Args() { ID, slug, site }: PostByIDArgs) {
+    if (!ID && !slug) {
+      throw new Error('Must provide ID or slug')
     }
-    if (siteID && siteURL) {
-      throw new Error('Must provide only siteID or siteURL')
+    if (ID && slug) {
+      throw new Error('Must provide only ID or slug')
     }
-    const site = siteID || siteURL.replace(/(http|https):\/\//, '')
+    if (isNaN(Number(site))) {
+      site = site.replace(/(http|https):\/\//, '')
+      if (site[site.length - 1] === '/') {
+        site = site.slice(0, -1)
+      }
+    }
     try {
-      const result = await axios.get(
-        `https://public-api.wordpress.com/rest/v1.1/sites/${site}/posts/${ID}`,
-      )
-      const post = camelize(result.data)
-      const p = new Post()
-      Object.keys(post).forEach(key => {
-        console.log(key, typeof post[key], typeof p[key])
-        // if (typeof post[key] === typeof p[key]) {
-        //   p[key] = post[key]
-        // } else {
-        //   p[key] = []
-        // }
-      })
-      console.log({ p })
-      return p
+      const result = await getPostById(site, ID, slug)
+      return result.data
     } catch (error) {
       throw error
     }

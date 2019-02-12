@@ -5,7 +5,8 @@
   "scripts": {
     "lint": "eslint . --ext .js,.ts,.tsx --ignore-path .gitignore",
     "dev": "nodemon --exec ts-node src/index.ts",
-    "build": "tsc"
+    "build:server": "tsc",
+    "build:web": "next build"
   },
   "repository": {
     "url": "youngtailors/wpcool",
@@ -16,6 +17,8 @@
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/express": "^4.16.0",
+    "@types/react-native": "^0.57.31",
+    "@types/zeit__next-typescript": "^0.1.1",
     "eslint": "^5.12.1",
     "eslint-config-prettier": "^3.5.0",
     "eslint-config-typescript-recommended": "^1.4.17",
@@ -54,6 +57,13 @@
     "graphql-type-json": "^0.2.1",
     "humps": "^2.0.1",
     "reflect-metadata": "^0.1.13",
-    "type-graphql": "^0.16.0"
+    "type-graphql": "^0.16.0",
+    "@zeit/next-typescript": "^1.1.1",
+    "babel-plugin-react-native-web": "^0.9.13",
+    "next": "^7.0.2",
+    "react": "^16.7.0",
+    "react-art": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-native-web": "^0.10.0-alpha.3"
   }
 }

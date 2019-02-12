@@ -90,7 +90,7 @@ export class Post {
   @Field(() => String)
   featuredImage: string
 
-  @Field(() => PostThumbnail)
+  @Field(() => PostThumbnail, { nullable: true })
   postThumbnail: PostThumbnail
 
   @Field(() => String)
@@ -105,8 +105,8 @@ export class Post {
   @Field(() => String)
   pageTemplate: string
 
-  @Field(() => String)
-  publicizeURLs: string
+  @Field(() => JSON)
+  publicizeURLs: any
 
   @Field(() => Terms)
   terms: Terms
@@ -123,8 +123,8 @@ export class Post {
   @Field(() => Int)
   attachmentCount: number
 
-  @Field(() => Int, { nullable: true })
-  metadata?: number = 1
+  @Field(() => JSON)
+  metadata: any
 
   @Field(() => Meta)
   meta: Meta
