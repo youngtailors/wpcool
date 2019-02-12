@@ -1,4 +1,4 @@
-export default {
+export const PostType = {
   ID: 'number',
   site_ID: 'number',
   author: 'object',

@@ -1,41 +1,40 @@
 import axios from 'axios'
-import dataPost from '../constants/post'
+import { PostType } from '../constants/raw-type'
+import { camelize } from '../utils/camel'
 
 const api = axios.create({
   baseURL: 'https://public-api.wordpress.com/rest/v1.1/sites',
   transformResponse: [
     data => {
       const newData = JSON.parse(data)
-      Object.keys(newData).map(item => {
-        if (dataPost[item] === 'array') {
-          if (!Array.isArray(newData[item])) {
-            if (typeof newData[item] === 'string') {
-              newData[item] = [newData[item]]
+      Object.keys(newData).map(key => {
+        if (PostType[key] === 'array') {
+          if (!Array.isArray(newData[key])) {
+            if (typeof newData[key] === 'string') {
+              newData[key] = [newData[key]]
             }
-            if (typeof newData[item] === 'boolean') {
-              newData[item] = []
+            if (typeof newData[key] === 'boolean') {
+              newData[key] = []
             }
-            if (typeof newData[item] === 'object') {
-              newData[item] = Object.keys(newData[item]).map(
-                i => newData[item][i],
-              )
+            if (typeof newData[key] === 'object') {
+              newData[key] = Object.keys(newData[key]).map(i => newData[key][i])
             }
           }
         } else {
-          if (!(typeof newData[item] === dataPost[item])) {
-            if (dataPost[item] === 'string') {
-              newData[item] = newData[item] + ''
+          if (!(typeof newData[key] === PostType[key])) {
+            if (PostType[key] === 'string') {
+              newData[key] = newData[key] + ''
             }
-            if (dataPost[item] === 'boolean') {
-              newData[item] = false
+            if (PostType[key] === 'boolean') {
+              newData[key] = false
             }
-            if (dataPost[item] === 'object') {
-              newData[item] = { [item]: newData[item] }
+            if (PostType[key] === 'object') {
+              newData[key] = { [key]: newData[key] }
             }
           }
         }
       })
-      return newData
+      return camelize(newData)
     },
   ],
 })

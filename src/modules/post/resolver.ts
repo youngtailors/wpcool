@@ -2,7 +2,6 @@ import { Resolver, Query, Args } from 'type-graphql'
 import { Post } from '../../entities/Post'
 import { PostByIDArgs } from './types'
 import { getPostById } from '../../services/wp'
-import { camelize } from '../../utils/camel'
 
 @Resolver(Post)
 export class PostResolver {
@@ -22,8 +21,7 @@ export class PostResolver {
     }
     try {
       const result = await getPostById(site, ID, slug)
-      const post = result.data
-      return camelize(post)
+      return result.data
     } catch (error) {
       throw error
     }
