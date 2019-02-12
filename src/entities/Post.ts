@@ -6,8 +6,8 @@ import {
   Capabilities,
   Terms,
   Tags,
-  Meta,
 } from '../entities'
+import { Meta } from '../entities/common'
 import * as JSON from 'graphql-type-json'
 
 @ObjectType()

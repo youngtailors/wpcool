@@ -1,5 +1,5 @@
 import { ObjectType, Field } from 'type-graphql'
-import { Links } from './links'
+import { Links } from '../common'
 
 @ObjectType()
 export class Meta {

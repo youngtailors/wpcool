@@ -1,5 +1,5 @@
 import { ObjectType, Field } from 'type-graphql'
-import { Introduction } from './common/Introduction'
+import { Introduction } from './common'
 
 @ObjectType()
 export class PostTag {

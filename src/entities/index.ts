@@ -11,5 +11,3 @@ export { Introduction } from './common/Introduction'
 export { Terms } from './Terms'
 
 export { Tags } from './Tags'
-
-export { Meta } from './Meta'
