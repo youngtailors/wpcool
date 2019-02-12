@@ -16,7 +16,9 @@ const api = axios.create({
               newData[item] = []
             }
             if (typeof newData[item] === 'object') {
-              Object.keys(newData[item]).map(i => newData[item][i])
+              newData[item] = Object.keys(newData[item]).map(
+                i => newData[item][i],
+              )
             }
           }
         } else {
