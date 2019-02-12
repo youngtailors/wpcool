@@ -1,8 +1,7 @@
 import { Resolver, Query, Args } from 'type-graphql'
-import axios from 'axios'
 import { Post } from '../../entities/Post'
 import { PostByIDArgs } from './types'
-import { camelizeKeys } from 'humps'
+import { getPostById } from '../../services/wp'
 
 @Resolver(Post)
 export class PostResolver {
@@ -20,13 +19,9 @@ export class PostResolver {
         site = site.slice(0, -1)
       }
     }
-    const url = `https://public-api.wordpress.com/rest/v1.1/sites/${site}/posts/${
-      ID ? ID : 'slug:' + slug
-    }`
     try {
-      const result = await axios.get(url)
-      const post = result.data
-      return camelizeKeys(post)
+      const result = await getPostById(site, ID, slug)
+      return result.data
     } catch (error) {
       throw error
     }
