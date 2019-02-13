@@ -20,6 +20,8 @@ next.prepare().then(async () => {
     context: ({ req }: any): IWPCoolContext => ({
       req,
     }),
+    introspection: true,
+    playground: true,
   })
 
   server.applyMiddleware({ app })
