@@ -70,22 +70,11 @@ export class PostResolver {
       author,
       search,
     }
-    // const xParams = {}
-    Object.keys(args).forEach(key => {
-      console.log(key)
-    })
     try {
       const result = await axios.get(
         `https://public-api.wordpress.com/rest/v1.1/sites/${site}/posts`,
         {
-          params: {
-            number,
-            order,
-            orderBy,
-            category,
-            author,
-            search,
-          },
+          params: args,
         },
       )
       const posts = camelizeKeys(result.data.posts)
