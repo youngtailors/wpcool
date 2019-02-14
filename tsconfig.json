@@ -20,6 +20,7 @@
     "experimentalDecorators": true,
 
     "declaration": false,
+    "jsx": "react",
     "baseUrl": ".",
     "rootDir": "src",
     "skipLibCheck": true
